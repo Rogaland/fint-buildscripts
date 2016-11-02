@@ -1,15 +1,15 @@
 apply plugin: 'com.github.jacobono.jaxb'
 
-dependencies {
-    jaxb 'com.sun.xml.bind:jaxb-xjc:2.2.7-b41'
-    jaxb 'com.sun.xml.bind:jaxb-impl:2.2.7-b41'
-    jaxb 'javax.xml.bind:jaxb-api:2.2.7'
-}
-
+gradle.all
 def xsdResourcesDir = 'src/main/resources/schema'
 
 import groovy.io.FileType
 def downloadXsd(urls) {
+
+task downloadXSDs << {
+  def urls = project.ext.xsdUrls
+  println urls
+
   urls.each { url ->
     def fileName = new File(url).getName()
     def common = new File("${xsdResourcesDir}/${fileName}")
@@ -19,6 +19,12 @@ def downloadXsd(urls) {
         }
     }
   }
+}
+
+dependencies {
+    jaxb 'com.sun.xml.bind:jaxb-xjc:2.2.7-b41'
+    jaxb 'com.sun.xml.bind:jaxb-impl:2.2.7-b41'
+    jaxb 'javax.xml.bind:jaxb-api:2.2.7'
 }
 
 task(setXjcProperties) << {
