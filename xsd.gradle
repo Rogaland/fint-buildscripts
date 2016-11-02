@@ -1,6 +1,5 @@
 apply plugin: 'com.github.jacobono.jaxb'
 
-gradle.all
 def xsdResourcesDir = 'src/main/resources/schema'
 
 import groovy.io.FileType
