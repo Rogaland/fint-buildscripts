@@ -4,10 +4,8 @@ def xsdResourcesDir = 'src/main/resources/schema'
 
 import groovy.io.FileType
 task downloadXSDs << {
-  def urls = project.ext.xsdUrls
-  println urls
-
-  urls.each { url ->
+  new File(xsdResourcesDir).mkdirs()
+  project.ext.xsdUrls.each { url ->
     def fileName = new File(url).getName()
     def common = new File("${xsdResourcesDir}/${fileName}")
     new URL(url).withInputStream { i ->
