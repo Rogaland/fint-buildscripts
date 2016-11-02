@@ -21,4 +21,4 @@ if (project.hasProperty('bintrayUser') && project.hasProperty('bintrayKey')) {
 
 | Task | Description |
 |------|-------------|
-| bintrayUpload | Upload artifact to bintray: `./gradlew bintrayUpload -PbintrayUser=<username> -PbintrayKey=<apiKey>` |
+| bintrayUpload | Upload artifact to bintray:<br>`./gradlew bintrayUpload -PbintrayUser=<username> -PbintrayKey=<apiKey>` |
