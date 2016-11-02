@@ -1,5 +1,4 @@
 ext {
-    sourceDir = 'src/main/java'
     resourcesDir = 'src/main/resources/schema'
 }
 
