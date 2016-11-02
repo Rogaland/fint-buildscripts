@@ -1,0 +1,29 @@
+ext {
+    sourceDir = 'src/main/java'
+    resourcesDir = 'src/main/resources/schema'
+}
+
+configurations {
+    xjc
+}
+
+dependencies {
+    xjc 'com.sun.xml.bind:jaxb-xjc:2.2.7-b41'
+    xjc 'com.sun.xml.bind:jaxb-impl:2.2.7-b41'
+    xjc 'javax.xml.bind:jaxb-api:2.2.7'
+}
+
+task createDirs << {
+    file(resourcesDir).mkdirs()
+}
+
+task schemagen << {
+    ant.taskdef(name: 'schemagen', classname: 'com.sun.tools.jxc.SchemaGenTask', classpath: configurations.xjc.asPath)
+    ant.schemagen(
+            srcdir: sourceDir,
+            destdir: resourcesDir,
+            includeAntRuntime: false
+    )
+}
+
+schemagen.dependsOn createDirs
