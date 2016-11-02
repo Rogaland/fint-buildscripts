@@ -14,6 +14,10 @@ Common build scripts that can be used in module by using `apply from: <url to bu
 ## bintray.gradle
 
 ```
+plugins {
+    id "com.jfrog.bintray" version "1.7"
+}
+...
 if (project.hasProperty('bintrayUser') && project.hasProperty('bintrayKey')) {
     apply from: 'https://raw.githubusercontent.com/FINTprosjektet/fint-buildscripts/master/bintray.gradle'
 }
