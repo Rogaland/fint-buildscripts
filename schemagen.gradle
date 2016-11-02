@@ -1,6 +1,5 @@
-ext {
-    resourcesDir = 'src/main/resources/schema'
-}
+def generatedDir = "${project.buildDir}/generated-schema"
+def resourcesDir = 'src/main/resources/schema'
 
 configurations {
     xjc
@@ -13,16 +12,24 @@ dependencies {
 }
 
 task createDirs << {
+    file(generatedDir).mkdirs()
     file(resourcesDir).mkdirs()
 }
 
 task schemagen << {
     ant.taskdef(name: 'schemagen', classname: 'com.sun.tools.jxc.SchemaGenTask', classpath: configurations.xjc.asPath)
     ant.schemagen(
-            srcdir: project.ext.sourceDir,
-            destdir: resourcesDir,
+            srcdir: project.ext.schemagenModelDir,
+            destdir: generatedDir,
             includeAntRuntime: false
     )
 }
 
+task postSchemagen(type: Copy) {
+    from generatedDir
+    into resourcesDir
+    rename 'schema1.xsd', project.ext.schemagenXsd
+}
+
 schemagen.dependsOn createDirs
+schemagen.finalizedBy postSchemagen

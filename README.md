@@ -26,3 +26,14 @@ if (project.hasProperty('bintrayUser') && project.hasProperty('bintrayKey')) {
 | Task | Description |
 |------|-------------|
 | bintrayUpload | Upload artifact to bintray:<br>`./gradlew bintrayUpload -PbintrayUser=<username> -PbintrayKey=<apiKey>` |
+
+## schemagen.gradle
+
+`apply from: 'https://raw.githubusercontent.com/FINTprosjektet/fint-buildscripts/master/schemagen.gradle'`
+
+| Task | Description |
+|------|-------------|
+| schemagen | Generate xsd file from Java class. The xsd name used for the generated file and the model directory should be defined in project build.gradle:<br>project.ext {
+    schemagenXsd = '...xsd'
+    schemagenModelDir = 'src/main/java'
+}
