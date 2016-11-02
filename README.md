@@ -33,4 +33,7 @@ if (project.hasProperty('bintrayUser') && project.hasProperty('bintrayKey')) {
 
 | Task | Description |
 |------|-------------|
-| schemagen | Generate xsd file from Java class. The xsd name used for the generated file and the model directory should be defined in project build.gradle:<br>project.ext {<br>schemagenXsd = '...xsd'<br> schemagenModelDir = 'src/main/java'<br>}
+| schemagen | Generate xsd file from Java class. The xsd name used for the generated file and the model directory should be defined in project build.gradle:<br>```project.ext {
+  schemagenXsd = '...xsd'
+  schemagenModelDir = 'src/main/java'
+}```|
