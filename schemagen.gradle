@@ -19,7 +19,7 @@ task createDirs << {
 task schemagen << {
     ant.taskdef(name: 'schemagen', classname: 'com.sun.tools.jxc.SchemaGenTask', classpath: configurations.xjc.asPath)
     ant.schemagen(
-            srcdir: sourceDir,
+            srcdir: project.ext.sourceDir,
             destdir: resourcesDir,
             includeAntRuntime: false
     )
