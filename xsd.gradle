@@ -9,13 +9,15 @@ dependencies {
 def xsdResourcesDir = 'src/main/resources/schema'
 
 import groovy.io.FileType
-def downloadXsd(file) {
-  def fileName = new File(file).getName()
-  def common = new File("${xsdResourcesDir}/${fileName}")
-  new URL(file).withInputStream { i ->
-      common.withOutputStream {
-          it << i
-      }
+def downloadXsd(urls) {
+  urls.each { url ->
+    def fileName = new File(url).getName()
+    def common = new File("${xsdResourcesDir}/${fileName}")
+    new URL(url).withInputStream { i ->
+        common.withOutputStream {
+            it << i
+        }
+    }
   }
 }
 
