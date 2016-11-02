@@ -4,8 +4,6 @@ gradle.all
 def xsdResourcesDir = 'src/main/resources/schema'
 
 import groovy.io.FileType
-def downloadXsd(urls) {
-
 task downloadXSDs << {
   def urls = project.ext.xsdUrls
   println urls
