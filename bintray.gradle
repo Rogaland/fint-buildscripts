@@ -1,6 +1,13 @@
-plugins {
-    id "com.jfrog.bintray" version "1.7"
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
+    }
 }
+
+apply plugin: 'com.jfrog.bintray'
 
 bintrayUpload {
     dependsOn assemble
