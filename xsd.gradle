@@ -1,6 +1,6 @@
 apply plugin: 'com.github.jacobono.jaxb'
 
-def xsdResourcesDir = "${project.resourcesDir}/schema"
+def xsdResourcesDir = "${resources.srcDirs}/schema"
 
 import groovy.io.FileType
 task downloadXsd << {
