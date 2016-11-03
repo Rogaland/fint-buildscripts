@@ -14,6 +14,8 @@ The generated code is stored in `src/main/java`.
 | downloadXsd | Download xsd files. The list of xsd files should be defined in project build.gradle with `project.ext { xsdUrls = [...]  }` |
 | processXsd | Generates code from the downloaded xsd files |
 
+Plugin: https://github.com/dmak/jaxb-xew-plugin
+
 ## bintray.gradle
 
 ```
