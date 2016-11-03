@@ -46,3 +46,16 @@ task processXsd << {
         arg(value: 'jaxb-bindings.xml')
     }
 }
+
+import groovy.io.FileType
+task addToStringToGeneratedCode << {
+    new File(project.generatedSourcesDir).eachFileRecurse(FileType.FILES) {
+        if(it.name.endsWith('.java')) {
+            def content = it.text.replaceAll(/@XmlAccessorType/, "import lombok.ToString;\n\n@ToString\n@XmlAccessorType")
+            it.write(content)
+        }
+    }
+}
+
+
+processXsd.finalizedBy addToStringToGeneratedCode
