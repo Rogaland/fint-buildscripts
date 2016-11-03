@@ -1,0 +1,17 @@
+plugins {
+  id 'org.ajoberstar.grgit' version '1.5.1'
+}
+
+import org.ajoberstar.grgit.Grgit
+jar {
+  version = Grgit.open().head().id
+}
+
+import org.apache.tools.ant.filters.ReplaceTokens
+afterEvaluate {
+    configure(processResources) {
+        filesMatching('**/*.yml') {
+            filter(ReplaceTokens, tokens: [version: jar.version])
+        }
+    }
+}
