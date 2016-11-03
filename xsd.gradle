@@ -1,36 +1,48 @@
-apply plugin: 'com.github.jacobono.jaxb'
+project.ext {
+    jaxbVersion = '2.2.11'
+    generatedSourcesDir = 'src/main/java'
+    xsdResourcesDir = 'src/main/resources/schema'
+}
 
-def xsdResourcesDir = 'src/main/resources/schema'
-
-import groovy.io.FileType
-task downloadXsd << {
-  new File(xsdResourcesDir).mkdirs()
-  project.ext.xsdUrls.each { url ->
-    def fileName = new File(url).getName()
-    def common = new File("${xsdResourcesDir}/${fileName}")
-    new URL(url).withInputStream { i ->
-        common.withOutputStream {
-            it << i
-        }
-    }
-  }
+configurations {
+    xjc
 }
 
 dependencies {
-    jaxb 'com.sun.xml.bind:jaxb-xjc:2.2.7-b41'
-    jaxb 'com.sun.xml.bind:jaxb-impl:2.2.7-b41'
-    jaxb 'javax.xml.bind:jaxb-api:2.2.7'
+    compile "com.sun.xml.bind:jaxb-xjc:${jaxbVersion}"
+    compile "com.sun.xml.bind:jaxb-core:${jaxbVersion}"
+    compile "com.sun.xml.bind:jaxb-impl:${jaxbVersion}"
+    compile "javax.xml.bind:jaxb-api:${jaxbVersion}"
+
+    xjc 'com.github.jaxb-xew-plugin:jaxb-xew-plugin:1.8'
+    xjc 'net.java.dev.jaxb2-commons:jaxb-fluent-api:2.1.8'
 }
 
-task(setXjcProperties) << {
-  System.setProperty('javax.xml.accessExternalSchema', 'all')
-}
-
-jaxb {
-    xsdDir = xsdResourcesDir
-    xjc {
-        args = ['-disableXmlSecurity', '-b', 'jaxb-bindings.xml']
+task downloadXsd << {
+    new File(project.xsdResourcesDir).mkdirs()
+    project.ext.xsdUrls.each { url ->
+        def fileName = new File(url).getName()
+        def common = new File("${project.xsdResourcesDir}/${fileName}")
+        new URL(url).withInputStream { i ->
+            common.withOutputStream {
+                it << i
+            }
+        }
     }
 }
 
-xjc.dependsOn setXjcProperties
+task processXsd << {
+    System.setProperty('javax.xml.accessExternalSchema', 'all')
+    ant.taskdef(name: 'xjc', classname: 'com.sun.tools.xjc.XJCTask', classpath: configurations.compile.asPath)
+
+    mkdir project.generatedSourcesDir
+    ant.xjc(destdir: project.generatedSourcesDir, extension: true) {
+        classpath {
+            pathelement(path: configurations.xjc.asPath)
+        }
+        schema(dir: project.xsdResourcesDir, includes: '*.xsd')
+        arg(value: '-disableXmlSecurity')
+        arg(value: '-b')
+        arg(value: 'jaxb-bindings.xml')
+    }
+}
