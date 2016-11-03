@@ -6,7 +6,7 @@ Common build scripts that can be used in module by using `apply from: <url to bu
 
 `apply from: 'https://raw.githubusercontent.com/FINTprosjektet/fint-buildscripts/master/xsd.gradle'`  
 
-Requires a jaxb-bindings.xml file in root of the project  
+Requires a `jaxb-bindings.xml` file in root of the project  
 The xsd-files are downloaded to `src/main/resources/schema`  
 The generated code is stored in `src/main/java`  
 
