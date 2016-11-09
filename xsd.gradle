@@ -57,7 +57,7 @@ task processXsd << {
 import groovy.io.FileType
 task addToStringToGeneratedCode << {
     new File(project.generatedSourcesDir).eachFileRecurse(FileType.FILES) {
-        if(it.name.endsWith('.java')) {
+        if(it.name.endsWith('.java') && !it.text.contains('@ToString')) {
             def content = it.text.replaceAll(/@XmlAccessorType/, "import lombok.ToString;\n\n@ToString\n@XmlAccessorType")
             it.write(content)
         }
