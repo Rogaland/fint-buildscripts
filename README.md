@@ -6,7 +6,7 @@ Common build scripts that can be used in module by using `apply from: <url to bu
 
 `apply from: 'https://raw.githubusercontent.com/FINTprosjektet/fint-buildscripts/master/xsd.gradle'`  
 
-The xsd-files are downloaded to `src/main/resources/schema`  
+The xsd-files are downloaded to `src/main/resources/schema`. If the `jaxb-bindings.xml` file is available in this directory, it will be used used during the code generation. If no binding-file is in the project, a default `jaxb-bindings.xml` file is downloaded.  
 The generated code is stored in `src/main/java`  
 Generated code includes `@ToString` from lombok.
 
