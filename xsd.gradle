@@ -20,6 +20,8 @@ dependencies {
 
 task downloadXsd << {
     new File(project.xsdResourcesDir).mkdirs()
+    def xsdUrls = project.ext.xsdUrls
+    xsdUrls << 'https://raw.githubusercontent.com/FINTprosjektet/fint-buildscripts/master/jaxb-bindings.xml'
     project.ext.xsdUrls.each { url ->
         def fileName = new File(url).getName()
         def common = new File("${project.xsdResourcesDir}/${fileName}")
@@ -41,9 +43,8 @@ task processXsd << {
             pathelement(path: configurations.xjc.asPath)
         }
         schema(dir: project.xsdResourcesDir, includes: '*.xsd')
-        arg(value: '-disableXmlSecurity')
         arg(value: '-b')
-        arg(value: 'jaxb-bindings.xml')
+        arg(value: "${project.xsdResourcesDir}/jaxb-bindings.xml")
     }
 }
 
