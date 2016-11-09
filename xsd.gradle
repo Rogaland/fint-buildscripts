@@ -45,7 +45,7 @@ task processXsd << {
         }
         schema(dir: project.xsdResourcesDir, includes: '*.xsd')
         arg(value: '-Xxew')
-        arg(value: "-Xxew:summary ${project.buildDir}/xew.txt)
+        arg(value: "-Xxew:summary ${project.buildDir}/xew.txt")
         arg(value: '-b')
         arg(value: "${project.xsdResourcesDir}/jaxb-bindings.xml")
     }
