@@ -1,3 +1,6 @@
+group 'no.fint'
+version jar.version
+
 bintrayUpload {
     dependsOn assemble
 }

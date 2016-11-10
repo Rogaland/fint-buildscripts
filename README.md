@@ -27,7 +27,10 @@ plugins {
 if (project.hasProperty('bintrayUser') && project.hasProperty('bintrayKey')) {
     apply from: 'https://raw.githubusercontent.com/FINTprosjektet/fint-buildscripts/master/bintray.gradle'
 }
+
 ```
+
+The `bintray.gradle` file will automatically set group (no.fint) and version (from jar.version).
 
 | Task | Description |
 |------|-------------|
