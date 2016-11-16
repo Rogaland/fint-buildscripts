@@ -49,7 +49,7 @@ The `bintray.gradle` file will automatically set group (no.fint) and version (fr
 `apply from: 'https://raw.githubusercontent.com/FINTprosjektet/fint-buildscripts/master/dependencies.gradle'`
 
 Common library versions.  
-Apply this gradle file to set version number for project dependencies: `testCompile("org.spockframework:spock-core:${spockSpringVersion}")`  
+Apply this gradle file to set version number for project dependencies:   `testCompile("org.spockframework:spock-core:${spockSpringVersion}")`  
 
 | Variable name | Version |
 |---------------|---------|
