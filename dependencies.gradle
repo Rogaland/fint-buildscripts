@@ -1,1 +1,5 @@
-spring-boot.version = '1.4.2.RELEASE'
+ext {
+    springBootVersion = '1.4.2.RELEASE'
+    lombokVersion = '1.16.10'
+    spockSpringVersion = '1.1-groovy-2.4-rc-3'
+}
