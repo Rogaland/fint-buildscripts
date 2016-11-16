@@ -43,3 +43,15 @@ The `bintray.gradle` file will automatically set group (no.fint) and version (fr
 | Task | Description |
 |------|-------------|
 | schemagen | Generate xsd file from Java class. The xsd name used for the generated file and the model directory should be defined in project build.gradle:<br> `project.ext { schemagenXsd = '...xsd' schemagenModelDir = 'src/main/java'}` |
+
+## dependencies.gradle
+
+`apply from: 'https://raw.githubusercontent.com/FINTprosjektet/fint-buildscripts/master/dependencies.gradle'`
+
+Common library versions. Use to set version number for project dependencies: `testCompile("org.spockframework:spock-core:${spockSpringVersion}")`  
+
+| Variable name | Version |
+|---------------|---------|
+| springBootVersion | 1.4.2.RELEASE |
+| lombokVersion | 1.16.10 |
+| spockSpringVersion | 1.1-groovy-2.4-rc-3 |
