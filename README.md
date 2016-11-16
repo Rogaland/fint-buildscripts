@@ -2,13 +2,12 @@
 
 Common build scripts that can be used in module by using `apply from: <url to buildscript>`
 
+* [xsd](#xsdgradle)
+* [bintray](#bintraygradle)
+* [schemagen](#schemagengradle)
+* [dependencies](#dependenciesgradle)
+
 ---
-
-* [xsd](#xsd.gradle)
-* [bintray](#bintray.gradle)
-* [schemagen](#schemagen.gradle)
-* [dependencies](#dependencies.gradle)
-
 
 ## xsd.gradle
 
