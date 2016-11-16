@@ -2,6 +2,14 @@
 
 Common build scripts that can be used in module by using `apply from: <url to buildscript>`
 
+---
+
+* [xsd](#xsd.gradle)
+* [bintray](#bintray.gradle)
+* [schemagen](#schemagen.gradle)
+* [dependencies](#dependencies.gradle)
+
+
 ## xsd.gradle
 
 `apply from: 'https://raw.githubusercontent.com/FINTprosjektet/fint-buildscripts/master/xsd.gradle'`  
