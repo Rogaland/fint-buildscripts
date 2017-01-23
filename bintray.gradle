@@ -12,7 +12,7 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = 'maven'
-        userOrg = 'fint'
+        userOrg = 'rfkikt'
         name = jar.baseName
         licenses = ['Apache-2.0']
         vcsUrl = "https://github.com/rogaland/${jar.baseName}"
